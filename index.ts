@@ -20,6 +20,7 @@ const printValues = (letter: string, data: number[]) => {
 };
 
 const vectorA$ = fromEvent(document.querySelector("#btnA"), "click").pipe(
+  tap(() => console.log("Pipe Vector A Start")),
   scan(a => {
     return [...a, a.length];
   }, []),
@@ -27,6 +28,7 @@ const vectorA$ = fromEvent(document.querySelector("#btnA"), "click").pipe(
 );
 
 const vectorB$ = fromEvent(document.querySelector("#btnB"), "click").pipe(
+  tap(() => console.log("Pipe Vector B Start")),
   scan(a => {
     return [...a, a.length];
   }, []),
@@ -34,7 +36,7 @@ const vectorB$ = fromEvent(document.querySelector("#btnB"), "click").pipe(
 );
 
 const combinedVector$ = combineLatest([vectorA$, vectorB$]).pipe(
-  tap(([vectorA, vectorB]) => console.log({ vectorA, vectorB })),
+  //tap(([vectorA, vectorB]) => console.log({ vectorA, vectorB })),
   map(([vectorA, vectorB]: Array<number[]>) => [...vectorA, ...vectorB])
 );
 
