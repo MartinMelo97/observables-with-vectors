@@ -36,7 +36,7 @@ const vectorB$ = fromEvent(document.querySelector("#btnB"), "click").pipe(
 );
 
 const combinedVector$ = combineLatest([vectorA$, vectorB$]).pipe(
-  //tap(([vectorA, vectorB]) => console.log({ vectorA, vectorB })),
+  tap(([vectorA, vectorB]) => console.log({ vectorA, vectorB })),
   map(([vectorA, vectorB]: Array<number[]>) => [...vectorA, ...vectorB])
 );
 
